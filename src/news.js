@@ -1,60 +1,59 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-class News extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log("i am developer");
-    this.state = { name1: "Loading...plz wait", count: 0 };
-  }
-  async componentDidMount() {
-    console.log("i am componentdidmount");
-    let res = await fetch(
-      `https://newsapi.org/v2/everything?q=${this.props.newsName}&apiKey=39c3025e706146f99c1db7b6e2295f6e`
-    );
-    let data = await res.json();
-    console.log(data, typeof data.articles, data.articles, typeof ar);
-    let w = { width: "400px" };
-    let arr = data.articles.map((p) => {
-      return (
-        <div class="p-8">
-          {/* <!--Card 1--> */}
-          <div class="max-w-sm rounded overflow-hidden shadow-lg">
-            <img class="w-full" src={p.urlToImage} />
-            <div class="px-6 py-4">
-              <div class="font-bold text-xl mb-2">{p.title}</div>
-              <p class="text-gray-700 text-base">{p.description}</p>
-              <button class="font-bold text-xl mb-2">
-                {" "}
-                <a href={p.url}>Read more</a>
-              </button>
+function News({ newsName }) {
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const res = await fetch(
+          `https://newsapi.org/v2/everything?q=${newsName}&apiKey=39c3025e706146f99c1db7b6e2295f6e`
+        );
+        const data = await res.json();
+
+        // Only keep articles that have an image
+        const filteredArticles = data.articles.filter((article) =>
+          article.urlToImage
+        );
+        setArticles(filteredArticles);
+      } catch (err) {
+        setError("Error fetching news. Please try again later.");
+      }
+
+      setLoading(false);
+    };
+
+    fetchNews();
+  }, [newsName]);
+
+  if (loading) return <div className="loading">Loading...</div>;
+  if (error) return <div className="error">{error}</div>;
+
+  return (
+    <div className="grid">
+      {articles.map((article, index) => (
+        <div key={index} className="grid-item">
+          <div className="card">
+            <img src={article.urlToImage} alt={article.title} />
+            <div className="card-body">
+              <div className="card-title">{article.title}</div>
+              <div className="card-description">{article.description}</div>
             </div>
-            <div class="px-6 pt-4 pb-2">
-              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                #html
-              </span>
-              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                #react.js
-              </span>
-              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                #css
-              </span>
+            <div className="card-footer">
+              <a href={article.url} target="_blank" rel="noopener noreferrer" class="button-link">
+                Read more
+              </a>
             </div>
           </div>
         </div>
-      );
-    });
-    console.log(arr);
-    this.setState({ name1: arr });
-  }
-  render() {
-    // this.setState({count:this.state.count+1})
-    console.log(" i am render", this.state.count);
-    return (
-      <div class="p-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-1">
-        {this.state.name1}{" "}
-      </div>
-    );
-  }
+      ))}
+    </div>
+  );
 }
 
 export default News;
