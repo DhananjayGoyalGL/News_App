@@ -1,16 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import News from "./news";
-import Nav from "./nav";
+import News from "./components/News";
+import Nav from "./components/Nav";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
-import Footer from "./footer";
+import Footer from "./components/Footer";
+import DarkModeToggle from "./components/DarkModeToggle";
 
 function App() {
   return (
     <BrowserRouter>
       <Nav />
+      <DarkModeToggle />
       <Routes>
         <Route path="/" element={<News newsName="bitcoin" />} />
         <Route path="/Apple" element={<News newsName="apple" />} />

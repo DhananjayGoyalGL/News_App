@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
-  background-color: #f1f5f9; /* Light background color */
+  background-color: #f1f5f9;
   color: #2d3748;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -28,9 +28,9 @@ header {
 }
 
 header a {
-  font-size: 2rem; /* Larger title */
+  font-size: 2rem;
   color: #fff;
-  font-weight: 600; /* Bold title */
+  font-weight: 600;
 }
 
 nav {
@@ -38,14 +38,14 @@ nav {
 }
 
 nav a {
-  color: #e2e8f0; /* Light gray */
+  color: #e2e8f0;
   margin-right: 15px;
-  font-size: 1.25rem; /* Larger font size */
+  font-size: 1.25rem;
   transition: color 0.3s ease;
 }
 
-nav a:hover {
-  color: #63b3ed !important; /* Blue hover effect */
+.button-link:hover {
+  background-color: #0c4b79 !important;
 }
 
 /* Card */
@@ -64,7 +64,7 @@ nav a:hover {
 }
 
 .card:hover {
-  transform: translateY(-5px); /* Slight hover effect */
+  transform: translateY(-5px);
 }
 
 .card img {
@@ -79,8 +79,8 @@ nav a:hover {
 }
 
 .card-title {
-  font-size: 1.5rem; /* Slightly bigger heading */
-  font-weight: 600; /* Bold title */
+  font-size: 1.5rem;
+  font-weight: 600;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -94,9 +94,9 @@ nav a:hover {
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: 1.5;
-  max-height: 6rem; /* Restrict height to show only a few lines */
+  max-height: 6rem;
   text-overflow: ellipsis;
-  white-space: normal; /* Allow text to wrap */
+  white-space: normal;
 }
 
 .card-footer {
@@ -113,7 +113,7 @@ nav a:hover {
 }
 
 .card-footer a:hover {
-  color: #3182ce; /* Darker blue on hover */
+  color: #3182ce;
 }
 
 /* Grid Layout */
@@ -154,14 +154,14 @@ nav a:hover {
 }
 
 .button-link:hover {
-  background-color: #2b6cb0; /* Darker blue on hover */
+  background-color: #2b6cb0;
 }
 
 .nav-button {
   display: inline-block;
   padding: 12px 24px;
   margin: 0 10px;
-  background-color: #4a5568; /* Dark Button */
+  background-color: #4a5568;
   color: white;
   border-radius: 6px;
   text-transform: uppercase;
@@ -171,13 +171,13 @@ nav a:hover {
 }
 
 .nav-button:hover {
-  background-color: #2d3748; /* Slightly darker on hover */
+  background-color: #2d3748;
 }
 
 /*footer*/
 
 footer {
-  background-color: #1e293b; /* Dark slate blue */
+  background-color: #1e293b;
   color: #e2e8f0;
   padding: 1.5rem 0;
   font-size: 1rem;
@@ -249,7 +249,73 @@ footer {
   border-top: 1px solid #4a5568;
 }
 
+body.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark .card {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border: 1px solid #444;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+}
+
+body.dark .card:hover {
+  background-color: #292929;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.8);
+}
+
+body.dark .button-link {
+  background-color: #444;
+  color: #ffffff;
+  border: 1px solid #666;
+}
+
+body.dark .card-footer {
+  background-color: rgb(128, 128, 128);
+}
+
+/* Toggle Button Styles */
+.toggle-container button {
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #007bff;
+  color: #ffffff;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Dark Mode Button */
+body.dark .toggle-container button {
+  background-color: #444;
+  color: #ffffff;
+  border: 2px solid #666;
+}
+
+/* Hover Effects */
+.toggle-container button:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+}
+
+body.dark .toggle-container button:hover {
+  background-color: #555;
+  border-color: #777;
+}
+
 @media (max-width: 1200px) {
+
   .grid,
   a {
     display: flex;
