@@ -12,13 +12,13 @@ function News({ newsName }) {
 
       try {
         const res = await fetch(
-          `https://newsapi.org/v2/everything?q=${newsName}&apiKey=39c3025e706146f99c1db7b6e2295f6e`
+          `https://newsapi.org/v2/everything?q=${newsName}&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`
         );
         const data = await res.json();
 
         // Only keep articles that have an image
-        const filteredArticles = data.articles.filter((article) =>
-          article.urlToImage
+        const filteredArticles = data.articles.filter(
+          (article) => article.urlToImage
         );
         setArticles(filteredArticles);
       } catch (err) {
@@ -45,7 +45,12 @@ function News({ newsName }) {
               <div className="card-description">{article.description}</div>
             </div>
             <div className="card-footer">
-              <a href={article.url} target="_blank" rel="noopener noreferrer" class="button-link">
+              <a
+                href={article.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="button-link"
+              >
                 Read more
               </a>
             </div>
